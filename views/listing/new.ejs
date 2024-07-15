@@ -1,0 +1,59 @@
+<% layout('/layout/boilerplate') -%>
+<body>
+    
+    <div class="row">
+      <div class="col-8 offset-2" >
+        <br><br>
+        <h3>Create New Listing</h3>
+    <form method="POST" action="/listing" novalidate class="needs-validation" enctype="multipart/form-data">
+      <div class="mb-3">
+        <lable for="title" class="form-lable" >Title</lable>
+        <input name="listing[title]" placeholder="Enter a catchy title" type="text" class="form-control" required/>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <lable for="description" class="form-lable" >Description</lable>
+        <textarea name="listing[description]" placeholder="enter description" class="form-control" required ></textarea>
+        <div class="invalid-feedback">
+          Please enter a short description
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <lable for="image" class="form-lable" >Upload Image</lable>
+        <input name="listing[image]" placeholder="enter image URL/Link" type="file" class="form-control" required/>
+        
+      </div>
+      
+      <div class="mb-3">
+        <lable for="price" class="form-lable" >Price</lable>
+        <input name="listing[price]" placeholder="1200"  class="form-control" required/>
+        <div class="invalid-feedback">
+        Price should be valid
+        </div>
+      </div>
+      
+     <div class="mb-3">
+      <lable for="location" class="form-lable" >Location</lable>
+      <input name="listing[location]" placeholder="Jaipur,Rajasthan" type="text" class="form-control" required/>
+      <div class="invalid-feedback">
+        Location should be valid
+        </div>
+     </div>
+     
+     <div class="mb-3">
+      <lable for="country" class="form-lable" >Country</lable>
+      <input name="listing[country]" placeholder="India" type="text" class="form-control" required/>
+      <div class="invalid-feedback">
+       Country name should be valid
+        </div>
+     </div>
+      <button class="btn btn-dark addBtn">Add</button>
+    </form>
+  </div>
+  </div>
+    
+</body>
