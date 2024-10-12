@@ -123,4 +123,28 @@ body{
     width: 80vh;
  }
 
+ /*weather info*/
+ #weather-info {
+    background-color:rgba(172, 255, 47, 0.114);
+    border: 1px solid #dcdcdc;
+    padding: 15px;
+    border-radius: 16px;
+    margin-top: 20px;
+    text-align: center;
+    width: 600px;
+}
+
+#weather-info p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.weather-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
  

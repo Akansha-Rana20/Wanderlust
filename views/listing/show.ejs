@@ -1,7 +1,36 @@
 <% layout('/layout/boilerplate') %>
 <script>
-    const mapToken = "<%=process.env.MAP_TOKEN%>";
+    const mapToken = "<%= process.env.MAP_TOKEN %>";
+    const apiKey = "<%= process.env.OPENWEATHER_API_KEY %>";
     const listing = <%- JSON.stringify(listing) %>;
+    const weatherLocation = "<%= listing.location %>";
+
+    async function fetchWeather() {
+        console.log(`Fetching weather for ${weatherLocation} with API key ${apiKey}`);
+        try {
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${weatherLocation}&appid=${apiKey}&units=metric`);
+            console.log(response); // Log the response object
+            const weatherData = await response.json();
+            console.log(weatherData); // Log the weather data
+
+            if (weatherData && weatherData.main) {
+                document.getElementById('weather-info').innerHTML = `
+                    <div class="weather-title">Weather Information</div>
+                    <p>Temperature: ${weatherData.main.temp}°C</p>
+                    <p>Weather: ${weatherData.weather[0].description}</p>
+                    <p>Humidity: ${weatherData.main.humidity}%</p>
+                    <p>Wind Speed: ${weatherData.wind.speed} m/s</p>
+                `;
+            } else {
+                document.getElementById('weather-info').innerHTML = `<p>Weather information is not available at the moment.</p>`;
+            }
+        } catch (error) {
+            document.getElementById('weather-info').innerHTML = `<p>Weather information is not available at the moment.</p>`;
+            console.error('Error fetching weather data:', error);
+        }
+    }
+
+    fetchWeather();
 </script>
 
     <div class="row mt-3">
@@ -94,7 +123,16 @@
         <%}%>
         
     </div>
+
+    
     <div class="col-8 offset-3">
+        <h3>Weather Information</h3>
+        <div id="weather-info"></div>
+    </div>
+    
+    
+    <div class="col-8 offset-3">
+    </br>
         <h3>Where,you'll be</h3>
         <div id="map" ></div>
     </div>
