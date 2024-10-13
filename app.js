@@ -83,9 +83,9 @@ const sessionOptions ={
 
 
 
-// app.get("/",(req,res)=>{
-//     res.send("Hi,I am root");
-// });
+app.get("/",(req,res)=>{
+    res.redirect('/listing');
+});
 
 
 app.use(session(sessionOptions));
@@ -106,17 +106,6 @@ app.use((req,res,next)=>{
     next();
 });
 
-
-
-// app.get("/demouser",async(req,res)=>{
-//     let fakeUser=new User({
-//         email:"fakeuser@gmail.com",
-//         username:"deltastudent"
-//     })
-
-//     let registeredUser =await User.register(fakeUser,"helloworld");
-//     res.send(registeredUser);
-// })
 
 app.use("/listing",listingRouter);
 app.use("/listing/:id/reviews",reviewRouter);
