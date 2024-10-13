@@ -14,6 +14,19 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
+
+const Listing = require("./models/listing.js"); // Assuming you have a Resort model
+
+app.get('/search', async (req, res) => {
+    const location = req.query.location;
+    
+    // Assuming you have a function to fetch listings based on location
+    const results = await Listing.find({ location: { $regex: location, $options: 'i' } });
+    
+    res.json(results);
+});
+
+
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");

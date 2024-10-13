@@ -35,12 +35,18 @@
           
         </div>
 
-        <div class="navbar-nav ms-auto">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2 search-inp" type="search" placeholder="Search destination" >
+        <!-- <div class="navbar-nav ms-auto">
+          <form class="d-flex" role="search" onsubmit="searchLocation(event)">
+            <input class="form-control me-2 search-inp" type="search" placeholder="Search destination" id="search-input">
             <button class="btn btn-search" type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i>Search</button>
           </form>
-        </div>
+        </div> -->
+
+        <form class="d-flex" role="search" onsubmit="searchLocation(event)">
+          <input class="form-control me-2 search-inp" type="search" placeholder="Search destination" id="search-input" required>
+          <button class="btn btn-search" type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i>Search</button>
+      </form>
+      
 
         <div class="navbar-nav ms-auto" >
           <a class="nav-link" href="/listing/new">Airbnb your home</a>
@@ -55,3 +61,4 @@
       </div>
     </div>
   </nav>
+  <script src="/js/search.js"></script>

@@ -32,6 +32,58 @@
         display: flex;
         align-items: center;
       }
+
+      .results-container {
+    margin-top: 20px;
+  }
+  
+  .result-item {
+    transition: transform 0.2s; /* Smooth transition effect */
+}
+
+.result-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.card {
+    border: none; /* Remove default border */
+    border-radius: 10px; /* Round the corners */
+}
+
+.card-title {
+    font-weight: bold; /* Make the title bold */
+    font-size: 1.25rem; /* Increase font size */
+}
+
+.card-text {
+    margin: 0.5rem 0; /* Add margin for better spacing */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Customize button color */
+    border: none; /* Remove border */
+    border-radius: 20px; /* Rounded corners */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Responsive design for mobile */
+@media (max-width: 576px) {
+    .result-item {
+        flex-direction: column; /* Stack elements vertically on small screens */
+    }
+
+    .card img {
+        height: auto; /* Allow the height to adjust automatically */
+    }
+}
+
+  
+
+ 
+
     </style>
     <div id="filters">
       <div class="filter">
@@ -87,23 +139,27 @@
         </div>
       </div>
     </div>
-<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
-    <% for(let listing of allListings){ %>
-      <a href="/listing/<%=listing._id%>" class="listing-link">
-        <div class="card listing-card" >
-          <img src="<%= listing.image.url%>" class="card-img-top" alt="listing" style="height: 20rem;">
-          <div class="card-img-overlay"></div>
-          <div class="card-body">
-            <p class="card-text">
-              <b><%=listing.title%></b><br/>
-              &#8377;<%=listing.price.toLocaleString("en-IN")%>/night
-              <i class="tax-info"> &nbsp; &nbsp; +18% GST</i>
-            </p>
-          </div>
-        </div>
-      </a>
-     
-   <%}%>
+
+    <div id="main-content" class="main-content">
+      <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+        <% for(let listing of allListings){ %>
+          <a href="/listing/<%=listing._id%>" class="listing-link">
+            <div class="card listing-card">
+              <img src="<%= listing.image.url %>" class="card-img-top" alt="listing" style="height: 20rem;">
+              <div class="card-body">
+                <p class="card-text">
+                  <b><%= listing.title %></b><br/>
+                  &#8377;<%= listing.price.toLocaleString("en-IN") %>/night
+                  <i class="tax-info"> &nbsp; &nbsp; +18% GST</i>
+                </p>
+              </div>
+            </div>
+          </a>
+        <% } %>
+      </div>
+    </div>
+    
+    <div id="results-container" class="results-container" style="display: none;"></div>
 
 <script>
   let taxSwitch=document.getElementById("flexSwitchCheckDefault");
@@ -118,3 +174,4 @@
     }
   })
 </script>
+<script src="/js/search.js"></script>
